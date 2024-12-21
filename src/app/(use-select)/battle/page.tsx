@@ -1,4 +1,4 @@
-import TopPage from './_components/view/Page';
+import TopPage from './_components/logic/index';
 
 export default function Page() {
   return <TopPage />;

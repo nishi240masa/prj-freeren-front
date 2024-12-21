@@ -1,45 +1,32 @@
-import { Avatar, Box, LinearProgress, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
+import Bar from './bar';
 
-export default function Battle() {
-  const currentHp = 80;
-  const maxHp = 100;
-  const hpPercentage = (currentHp / maxHp) * 100;
+import { type Player } from '@/types/player';
 
+export default function Battle({ player }: { player: Player }) {
   return (
-    <div>
-      <Box
-        sx={{
-          display: 'flex',
-          backdropFilter: 'blur(10px)',
-          backgroundColor: 'black',
-          color: 'white',
-          opacity: 0.4,
-        }}
-      >
-        <Box sx={{ width: '50px', height: '50px' }}>
-          <Avatar alt="player" src="player.png" sx={{ width: '100%', height: '100%' }} variant="rounded" />
-        </Box>
-        {/* プレイヤー */}
-        <Typography variant="h4">name</Typography>
-        {/* HP数 */}
-        <Typography variant="body1">
-          {currentHp} / {maxHp}
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        borderRadius: 4,
+        boxShadow: '0 4px 10px rgba(0,0,0,0.5)',
+        backdropFilter: 'blur(10px)',
+      }}
+    >
+      {/* プレイヤーの情報 */}
+      <Box sx={{ flex: 1 }}>
+        <Typography sx={{ fontWeight: 'bold', color: '#fff', mb: 2 }} variant="h5">
+          {player.name}
         </Typography>
-        {/* HPバー */}
-        <LinearProgress
-          variant="determinate"
-          value={hpPercentage}
-          sx={{
-            flex: 1,
-            height: 10,
-            borderRadius: 5,
-            transition: 'width 0.5s ease-in-out', // アニメーションを追加
-            '& .MuiLinearProgress-bar': {
-              bgcolor: hpPercentage > 50 ? 'green' : hpPercentage > 20 ? 'orange' : 'red',
-            },
-          }}
-        />
+
+        {/* 各ステータスバー */}
+        <Bar barColor="#66FF66" current={player.currentHp} height={20} label="HP" max={player.maxHp} />
+        <Bar barColor="#6699FF" current={player.currentMp} height={20} label="MP" max={player.maxMp} />
+        <Bar barColor="#FF6666" current={player.currentDf} height={20} label="DF" max={player.maxDf} />
       </Box>
-    </div>
+    </Box>
   );
 }

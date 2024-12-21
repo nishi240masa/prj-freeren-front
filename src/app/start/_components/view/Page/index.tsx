@@ -62,7 +62,6 @@ export default function Page() {
         {/* スタートリンク */}
         <Link
           href="/select"
-          underline="none"
           sx={{
             fontSize: '2rem',
             fontWeight: 'bold',
@@ -76,6 +75,7 @@ export default function Page() {
               textShadow: '0px 0px 15px rgba(0, 123, 255, 1)',
             },
           }}
+          underline="none"
         >
           Start
         </Link>

@@ -1,7 +1,7 @@
 'use client';
 
-import Footer from '@/app/_components/Footer';
 import { Box, Link, Typography } from '@mui/material';
+import Footer from '@/app/_components/Footer';
 
 export default function Page() {
   return (
@@ -35,13 +35,13 @@ export default function Page() {
       >
         {/* タイトル */}
         <Typography
-          variant="h1"
           sx={{
             fontSize: '4rem',
             fontFamily: "'Cinzel Decorative', serif",
             textShadow: '0px 0px 20px rgba(0, 123, 255, 1)',
             color: '#69bff8',
           }}
+          variant="h1"
         >
           mode select
         </Typography>
