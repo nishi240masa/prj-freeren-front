@@ -1,21 +1,24 @@
 import { atom } from 'jotai';
-import { type Player } from '@/types/player';
+import { type GameState, type Player } from '@/types/player';
 
 // webSocketの接続状態を管理する
 export const webSocketConnectedState = atom(false);
 
-// 現在のターンを管理
-export const currentTurnAtom = atom<'player' | 'opponent'>('player');
-
 // プレイヤーとエネミーのHPを管理
-export const gameStateAtom = atom({
+export const gameStateAtom = atom<GameState>({
   player1Hp: 100,
+  player1Mp: 100,
+  player1Df: 100,
+  player1Action: 'none',
   player2Hp: 100,
+  player2Mp: 100,
+  player2Df: 100,
+  player2Action: 'none',
 });
 
 // ユーザーのステータスを管理する
 export const userStatusStateAtom = atom<Player>({
-  name: 'user',
+  name: 'player1',
   maxHp: 100,
   currentHp: 100,
   maxMp: 100,
@@ -26,7 +29,7 @@ export const userStatusStateAtom = atom<Player>({
 
 // エネミーのステータスを管理する
 export const enemyStatusStateAtom = atom<Player>({
-  name: 'enemy',
+  name: 'player2',
   maxHp: 100,
   currentHp: 100,
   maxMp: 100,
@@ -34,3 +37,6 @@ export const enemyStatusStateAtom = atom<Player>({
   maxDf: 100,
   currentDf: 100,
 });
+
+// ユーザーのplayerIdを管理する
+export const playerIdAtom = atom<string>('');

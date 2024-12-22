@@ -1,32 +1,72 @@
 'use client';
 
+import { type SelectChangeEvent } from '@mui/material/Select';
 import { useAtom } from 'jotai';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Page from '../view/Page';
+import SelectPlayer from '../view/Page/name';
 import { connectWebSocket } from '@/app/api';
-import { enemyStatusStateAtom, gameStateAtom, userStatusStateAtom } from '@/app/stores';
+import { enemyStatusStateAtom, gameStateAtom, playerIdAtom, userStatusStateAtom } from '@/app/stores';
 
-export default function index() {
+export default function Index() {
   const [gameState, setGameState] = useAtom(gameStateAtom);
-  const [userStatusState, setUserStatusState] = useAtom(userStatusStateAtom);
-  const [enemyStatusState, setEnemyStatusState] = useAtom(enemyStatusStateAtom);
+  const [userStatusState, setUserStatusState] = useAtom(userStatusStateAtom); // 状態を参照しない
+  const [enemyStatusState, setEnemyStatusState] = useAtom(enemyStatusStateAtom); // 状態を参照しない
+  const [player, setPlayer] = useState('none');
+  const [playerId, setPlayerId] = useAtom(playerIdAtom);
+  const handleChange = (event: SelectChangeEvent) => {
+    setPlayer(event.target.value);
+  };
+
+  const handleClick = () => {
+    setPlayerId(player);
+  };
 
   // WebSocketの接続とステータスの同期を制御
   useEffect(() => {
-    connectWebSocket('player1', setGameState);
-  }, []); // 初回マウント時のみ実行
+    if (playerId === '') {
+      return;
+    }
+    // eslint-disable-next-line no-console
+    console.log('playerId', playerId);
+    connectWebSocket(playerId, setGameState);
+    setUserStatusState((prev) => ({
+      ...prev,
+      name: playerId,
+    }));
+    setEnemyStatusState((prev) => ({
+      ...prev,
+      name: playerId === 'player1' ? 'player2' : 'player1',
+    }));
+  }, [playerId]); // playerId の変更時のみ実行
 
   // ゲーム状態をステータスに反映
   useEffect(() => {
-    console.log(gameState.player1Hp);
-    setUserStatusState((prev) => ({ ...prev, currentHp: gameState.player1Hp }));
-    console.log(gameState.player2Hp);
-    setEnemyStatusState((prev) => ({ ...prev, currentHp: gameState.player2Hp }));
-  }, [gameState, setUserStatusState, setEnemyStatusState]); // gameState が変更されたときに実行
+    // eslint-disable-next-line no-console
+
+    setUserStatusState((prev) => ({
+      ...prev,
+      currentHp: gameState.player1Hp,
+      currentMp: gameState.player1Mp,
+      currentDf: gameState.player1Df,
+    }));
+    // eslint-disable-next-line no-console
+    console.log('userStatusState', userStatusState);
+
+    setEnemyStatusState((prev) => ({
+      ...prev,
+      currentHp: gameState.player2Hp,
+      currentMp: gameState.player2Mp,
+      currentDf: gameState.player2Df,
+    }));
+    // eslint-disable-next-line no-console
+    console.log('enemyStatusState', enemyStatusState);
+  }, [gameState, setUserStatusState, setEnemyStatusState]); // gameState の変更時のみ実行
 
   return (
     <div>
-      <Page enemy={enemyStatusState} player={userStatusState} />
+      {playerId === '' && <SelectPlayer handleChange={handleChange} handleClick={handleClick} player={player} />}
+      <Page enemy={enemyStatusState} player={userStatusState} playerID={playerId} />
     </div>
   );
 }

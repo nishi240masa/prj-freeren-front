@@ -4,8 +4,8 @@ import { CssBaseline, ThemeProvider } from '@mui/material';
 import theme from './theme';
 
 export const metadata = {
-  title: 'west-Potfolio',
-  description: 'westのポートフォリオサイト',
+  title: 'prg-flelen',
+  description: 'prg-flelen',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

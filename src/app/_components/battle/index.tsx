@@ -25,7 +25,7 @@ export default function Battle({ player }: { player: Player }) {
         {/* 各ステータスバー */}
         <Bar barColor="#66FF66" current={player.currentHp} height={20} label="HP" max={player.maxHp} />
         <Bar barColor="#6699FF" current={player.currentMp} height={20} label="MP" max={player.maxMp} />
-        <Bar barColor="#FF6666" current={player.currentDf} height={20} label="DF" max={player.maxDf} />
+        <Bar barColor="#FF6666" current={player.currentDf} height={20} label="DP" max={player.maxDf} />
       </Box>
     </Box>
   );

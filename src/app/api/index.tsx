@@ -1,11 +1,11 @@
+// Assuming SetAtom is from 'jotai'
+import { type GameState } from '@/types/player';
+
 let socket: WebSocket | null = null;
 
 // WebSocketの接続を初期化
-export const connectWebSocket = (
-  playerId: string,
-  setGameState: (gameState: { player1Hp: number; player2Hp: number }) => void,
-) => {
-  socket = new WebSocket(`ws://localhost:8080/ws?playerId=${playerId}`);
+export const connectWebSocket = (playerId: string, setGameState: (gameState: GameState) => void) => {
+  socket = new WebSocket(`wss://prj-freeren-back.onrender.com/player/ws?player=${playerId}`);
 
   socket.onopen = () => {
     // eslint-disable-next-line no-console
@@ -13,7 +13,7 @@ export const connectWebSocket = (
   };
 
   socket.onmessage = (event) => {
-    const gameState = JSON.parse(event.data as string) as { player1Hp: number; player2Hp: number };
+    const gameState = JSON.parse(event.data as string) as GameState;
     // ゲームの状態を更新
     setGameState(gameState);
   };

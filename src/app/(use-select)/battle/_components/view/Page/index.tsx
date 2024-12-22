@@ -1,15 +1,16 @@
 'use client';
 
-import { Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 import Battle from '@/app/_components/battle';
 import { type Player } from '@/types/player';
 
 interface PageProps {
   player: Player;
   enemy: Player;
+  playerID: string;
 }
 
-export default function Page({ player, enemy }: PageProps) {
+export default function Page({ player, enemy, playerID }: PageProps) {
   return (
     <Box
       sx={{
@@ -24,17 +25,27 @@ export default function Page({ player, enemy }: PageProps) {
     >
       {/* エネミー画像 */}
       <Box
-        sx={{
-          position: 'absolute',
-          top: '15%',
-          right: '10%',
-          width: { xs: '150px', sm: '250px', md: '350px' },
-          height: { xs: '250px', sm: '400px', md: '500px' },
-        }}
+        sx={
+          playerID === 'player2'
+            ? {
+                position: 'absolute',
+                top: '15%',
+                right: '5%',
+                width: { xs: '150px', sm: '300px', md: '400px' },
+                height: { xs: '200px', sm: '300px', md: '400px' },
+              }
+            : {
+                position: 'absolute',
+                top: '15%',
+                right: '10%',
+                width: { xs: '150px', sm: '250px', md: '350px' },
+                height: { xs: '250px', sm: '400px', md: '500px' },
+              }
+        }
       >
         <img
           alt="enemy"
-          src="enemy.png"
+          src={playerID === 'player1' ? 'enemy.png' : 'player.png'}
           style={{
             width: '100%',
             height: '100%',
@@ -57,17 +68,27 @@ export default function Page({ player, enemy }: PageProps) {
 
       {/* プレイヤー画像 */}
       <Box
-        sx={{
-          position: 'absolute',
-          bottom: '0%',
-          left: '5%',
-          width: { xs: '150px', sm: '200px', md: '500px' },
-          height: { xs: '200px', sm: '300px', md: '650px' },
-        }}
+        sx={
+          playerID === 'player1'
+            ? {
+                position: 'absolute',
+                bottom: '0%',
+                left: '5%',
+                width: { xs: '150px', sm: '200px', md: '500px' },
+                height: { xs: '200px', sm: '300px', md: '650px' },
+              }
+            : {
+                position: 'absolute',
+                bottom: '-5%',
+                left: '10%',
+                width: { xs: '150px', sm: '250px', md: '350px' },
+                height: { xs: '250px', sm: '500px', md: '600px' },
+              }
+        }
       >
         <img
           alt="player"
-          src="player.png"
+          src={playerID === 'player1' ? 'player.png' : 'enemy.png'}
           style={{
             width: '100%',
             height: '100%',
@@ -89,7 +110,7 @@ export default function Page({ player, enemy }: PageProps) {
       </Box>
 
       {/* メッセージバー */}
-      <Box
+      {/* <Box
         sx={{
           position: 'absolute',
           bottom: '3%', // 少し下に配置
@@ -119,7 +140,7 @@ export default function Page({ player, enemy }: PageProps) {
         >
           ここにメッセージを表示する。
         </Typography>
-      </Box>
+      </Box> */}
     </Box>
   );
 }
