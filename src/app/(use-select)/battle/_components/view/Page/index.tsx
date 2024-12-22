@@ -67,7 +67,7 @@ export default function Page({ player, enemy, playerID }: PageProps) {
           height: { xs: 'auto', md: '280px' },
         }}
       >
-        <Battle player={playerID === 'player1' ? player1 : player2} />
+        <Battle player={playerID === 'player1' ? player2 : player1} />
       </Box>
 
       {/* プレイヤー画像 */}

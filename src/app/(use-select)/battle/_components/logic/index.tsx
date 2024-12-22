@@ -30,22 +30,16 @@ export default function Index() {
     // eslint-disable-next-line no-console
     console.log('playerId', playerId);
     connectWebSocket(playerId, setGameState);
-    setUserStatusState((prev) => ({
-      ...prev,
-      name: playerId,
-    }));
-    setEnemyStatusState((prev) => ({
-      ...prev,
-      name: playerId === 'player1' ? 'player2' : 'player1',
-    }));
   }, [playerId]); // playerId の変更時のみ実行
 
   // ゲーム状態をステータスに反映
   useEffect(() => {
     // eslint-disable-next-line no-console
+    console.log('gameState', gameState);
 
     setUserStatusState((prev) => ({
       ...prev,
+      Action: gameState.player1Action,
       currentHp: gameState.player1Hp,
       currentMp: gameState.player1Mp,
       currentDf: gameState.player1Df,
@@ -55,6 +49,7 @@ export default function Index() {
 
     setEnemyStatusState((prev) => ({
       ...prev,
+      Action: gameState.player2Action,
       currentHp: gameState.player2Hp,
       currentMp: gameState.player2Mp,
       currentDf: gameState.player2Df,

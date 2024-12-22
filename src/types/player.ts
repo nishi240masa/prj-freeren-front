@@ -6,6 +6,7 @@ export interface Player {
   currentMp: number;
   maxDf: number;
   currentDf: number;
+  Action: string;
 }
 
 export interface GameState {

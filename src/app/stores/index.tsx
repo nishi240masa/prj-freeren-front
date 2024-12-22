@@ -25,6 +25,7 @@ export const userStatusStateAtom = atom<Player>({
   currentMp: 100,
   maxDf: 100,
   currentDf: 100,
+  Action: 'none',
 });
 
 // エネミーのステータスを管理する
@@ -36,6 +37,7 @@ export const enemyStatusStateAtom = atom<Player>({
   currentMp: 100,
   maxDf: 100,
   currentDf: 100,
+  Action: 'none',
 });
 
 // ユーザーのplayerIdを管理する
