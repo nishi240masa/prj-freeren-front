@@ -11,6 +11,10 @@ interface PageProps {
 }
 
 export default function Page({ player, enemy, playerID }: PageProps) {
+  const player1 = player;
+
+  const player2 = enemy;
+
   return (
     <Box
       sx={{
@@ -63,7 +67,7 @@ export default function Page({ player, enemy, playerID }: PageProps) {
           height: { xs: 'auto', md: '280px' },
         }}
       >
-        <Battle player={enemy} />
+        <Battle player={playerID === 'player1' ? player1 : player2} />
       </Box>
 
       {/* プレイヤー画像 */}
@@ -106,7 +110,7 @@ export default function Page({ player, enemy, playerID }: PageProps) {
           height: { xs: 'auto', md: '280px' },
         }}
       >
-        <Battle player={player} />
+        <Battle player={playerID === 'player1' ? player1 : player2} />
       </Box>
 
       {/* メッセージバー */}
