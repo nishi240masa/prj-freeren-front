@@ -10,10 +10,13 @@ export const gameStateAtom = atom<GameState>({
   player1Mp: 100,
   player1Df: 100,
   player1Action: 'none',
+  player1State: 'noReady',
   player2Hp: 100,
   player2Mp: 100,
   player2Df: 100,
   player2Action: 'none',
+  player2State: 'noReady',
+  time: 3,
 });
 
 // ユーザーのステータスを管理する
@@ -26,6 +29,7 @@ export const userStatusStateAtom = atom<Player>({
   maxDf: 100,
   currentDf: 100,
   Action: 'none',
+  State: 'noReady',
 });
 
 // エネミーのステータスを管理する
@@ -38,6 +42,7 @@ export const enemyStatusStateAtom = atom<Player>({
   maxDf: 100,
   currentDf: 100,
   Action: 'none',
+  State: 'noReady',
 });
 
 // ユーザーのplayerIdを管理する

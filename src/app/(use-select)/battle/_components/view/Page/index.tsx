@@ -1,4 +1,4 @@
-'use client';
+/* eslint-disable consistent-return */
 
 import { Box } from '@mui/material';
 import Battle from '@/app/_components/battle';
@@ -12,7 +12,6 @@ interface PageProps {
 
 export default function Page({ player, enemy, playerID }: PageProps) {
   const player1 = player;
-
   const player2 = enemy;
 
   return (
@@ -63,7 +62,7 @@ export default function Page({ player, enemy, playerID }: PageProps) {
           position: 'absolute',
           bottom: '5%',
           right: '5%',
-          width: { xs: '90%', md: '350px' }, // レスポンシブ対応
+          width: { xs: '90%', md: '350px' },
           height: { xs: 'auto', md: '280px' },
         }}
       >
@@ -100,51 +99,18 @@ export default function Page({ player, enemy, playerID }: PageProps) {
           }}
         />
       </Box>
-      {/* playerバトルUI */}
+      {/* プレイヤーバトルUI */}
       <Box
         sx={{
           position: 'absolute',
           top: '5%',
           left: '5%',
-          width: { xs: '90%', md: '350px' }, // レスポンシブ対応
+          width: { xs: '90%', md: '350px' },
           height: { xs: 'auto', md: '280px' },
         }}
       >
         <Battle player={playerID === 'player1' ? player1 : player2} />
       </Box>
-
-      {/* メッセージバー */}
-      {/* <Box
-        sx={{
-          position: 'absolute',
-          bottom: '3%', // 少し下に配置
-          left: '50%',
-          transform: 'translateX(-50%)',
-          width: '90%',
-          maxWidth: '700px',
-          height: '12%',
-          borderRadius: 4,
-          boxShadow: '0 4px 10px rgba(0,0,0,0.5)',
-          backgroundColor: 'rgba(0, 0, 0, 0.85)',
-          border: '1px solid #aaa',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          padding: 1,
-        }}
-      >
-        <Typography
-          sx={{
-            color: 'white',
-            textAlign: 'center',
-            fontSize: { xs: '0.9rem', sm: '1rem', md: '1.2rem' },
-            fontWeight: 'bold',
-          }}
-          variant="body1"
-        >
-          ここにメッセージを表示する。
-        </Typography>
-      </Box> */}
     </Box>
   );
 }

@@ -7,6 +7,7 @@ export interface Player {
   maxDf: number;
   currentDf: number;
   Action: string;
+  State: string;
 }
 
 export interface GameState {
@@ -14,10 +15,13 @@ export interface GameState {
   player1Mp: number;
   player1Df: number;
   player1Action: string;
+  player1State: string;
   player2Hp: number;
   player2Mp: number;
   player2Df: number;
   player2Action: string;
+  player2State: string;
+  time: number;
 }
 
 // 	Player1HP   int    `json:"player1Hp"`

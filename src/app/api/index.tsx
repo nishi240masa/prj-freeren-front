@@ -14,6 +14,10 @@ export const connectWebSocket = (playerId: string, setGameState: (gameState: Gam
 
   socket.onmessage = (event) => {
     const gameState = JSON.parse(event.data as string) as GameState;
+
+    // eslint-disable-next-line no-console
+    console.log('gameState', gameState);
+
     // ゲームの状態を更新
     setGameState(gameState);
   };
