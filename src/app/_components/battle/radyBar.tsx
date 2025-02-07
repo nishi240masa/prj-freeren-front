@@ -22,7 +22,7 @@ export default function RadyBar({ player }: { player: Player }) {
         </Typography>
 
         {/* State */}
-        {player.State === 'noReady' || player.State === '' ? (
+        {player.State === 'noReady' || player.State === '' || player.State === 'fighting' ? (
           <Typography sx={{ color: '#fff', mb: 2 }} variant="h1">
             準備中
           </Typography>
