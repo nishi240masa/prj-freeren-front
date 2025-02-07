@@ -1,5 +1,4 @@
-import { Box, Button, Typography } from '@mui/material';
-import Link from 'next/link';
+import { Box, Button, Link, Stack, Typography } from '@mui/material';
 
 export default function Win({ playerName }: { playerName: string }) {
   return (
@@ -17,34 +16,24 @@ export default function Win({ playerName }: { playerName: string }) {
         zIndex: 9999,
       }}
     >
-      <Typography
-        sx={{
-          color: 'white',
-          fontSize: { xs: '4rem', sm: '6rem', md: '8rem' },
-          fontWeight: 'bold',
-        }}
-        variant="h1"
-      >
-        {playerName}のWIN!!
-      </Typography>
-
-      <Button
-        onClick={() => {
-          // selectページに遷移
-          <Link href="/select" />;
-        }}
-      >
+      <Stack spacing={2}>
         <Typography
           sx={{
             color: 'white',
-            fontSize: { xs: '2rem', sm: '4rem', md: '6rem' },
+            fontSize: { xs: '4rem', sm: '6rem', md: '8rem' },
             fontWeight: 'bold',
           }}
           variant="h1"
         >
-          リトライ
+          {playerName}のWIN!!
         </Typography>
-      </Button>
+
+        <Link href="/select">
+          <Button>
+            <Typography variant="h2">タイトルへ</Typography>
+          </Button>
+        </Link>
+      </Stack>
     </Box>
   );
 }
