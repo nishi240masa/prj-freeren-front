@@ -7,6 +7,7 @@ import Page from '../view/Page';
 import Countdown from '../view/Page/countdow';
 import SelectPlayer from '../view/Page/name';
 import Ready from '../view/Page/ready';
+import Win from '../view/Page/win';
 import { connectWebSocket } from '@/app/api';
 import { enemyStatusStateAtom, gameStateAtom, playerIdAtom, userStatusStateAtom } from '@/app/stores';
 
@@ -67,6 +68,10 @@ export default function Index() {
   return (
     <div>
       {playerId === '' && <SelectPlayer handleChange={handleChange} handleClick={handleClick} player={player} />}
+
+      {gameState.player1State === 'death' || gameState.player2State === 'death' ? (
+        <Win playerName={gameState.player1State === 'win' ? userStatusState.name : enemyStatusState.name} />
+      ) : null}
 
       {/* stateが1,2がReady, */}
       {gameState.player1State === 'ready' && gameState.player2State === 'ready' ? (
