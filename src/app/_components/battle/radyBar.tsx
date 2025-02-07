@@ -22,15 +22,12 @@ export default function RadyBar({ player }: { player: Player }) {
         </Typography>
 
         {/* State */}
-        {player.State === 'noReady' ||
-        player.State === '' ||
-        player.State === 'fighting' ||
-        player.State === 'death' ? (
-          <Typography sx={{ color: '#fff', mb: 2 }} variant="h1">
+        {player.State === 'noReady' || player.State === '' || player.State === 'death' || player.State === 'win' ? (
+          <Typography sx={{ color: '#fff', mb: 2, textAlign: 'center' }} variant="h1">
             準備中
           </Typography>
         ) : (
-          <Typography sx={{ color: '#00ff7f', mb: 2 }} variant="h1">
+          <Typography sx={{ color: '#00ff7f', mb: 2, textAlign: 'center' }} variant="h1">
             準備完了
           </Typography>
         )}

@@ -52,6 +52,8 @@ export default function Index() {
     }));
     // eslint-disable-next-line no-console
     console.log('userStatusState', userStatusState);
+    // eslint-disable-next-line no-console
+    console.log('gameState.player1State', gameState.player1State);
 
     setEnemyStatusState((prev) => ({
       ...prev,
@@ -63,6 +65,8 @@ export default function Index() {
     }));
     // eslint-disable-next-line no-console
     console.log('enemyStatusState', enemyStatusState);
+    // eslint-disable-next-line no-console
+    console.log('gameState.player2State', gameState.player2State);
   }, [gameState, setUserStatusState, setEnemyStatusState]); // gameState の変更時のみ実行
 
   return (
